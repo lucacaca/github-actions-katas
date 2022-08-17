@@ -3,7 +3,15 @@ env:
   docker_password: ${{ secrets.MY_PW }}
   GIT_COMMIT: ${{ github.sha }}
 name: Java CI
-on: push
+on:
+  # Trigger the workflow on push or pull request,
+  # but only for the main branch
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
 jobs:
   Clone-down:
     name: Clone down repo
